@@ -1,53 +1,58 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { LineChart, BarChart, PieChart } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export default function InsightsPage() {
+  const insights = [
+    {
+      id: 1,
+      title: "生産性トレンド",
+      date: "2024/12/12",
+      summary: "生産性トレンドサマリー",
+    },
+    {
+      id: 2,
+      title: "プロジェクト進捗",
+      date: "2024/12/25",
+      summary: "プロジェクト進捗サマリー",
+    },
+    {
+      id: 3,
+      title: "時間配分",
+      date: "2024/12/31",
+      summary: "異なるアクティビティに費やされた時間の割合",
+    },
+  ]
+
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-3xl font-bold mb-6">サマリー</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <LineChart className="h-6 w-6" />
-              <span>生産性トレンド</span>
-            </CardTitle>
-            <span className="text-sm">作成日: 2024/12/12</span>
-          </CardHeader>
-          <CardContent>
-            <p>生産性トレンドサマリー</p>
-            {/* ここに実際のチャートコンポーネントを追加 */}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <BarChart className="h-6 w-6" />
-              <p>プロジェクト進捗</p>
-            </CardTitle>
-            <span className="text-sm">作成日: 2024/12/25</span>
-          </CardHeader>
-          <CardContent>
-            <p>プロジェクト進捗サマリー</p>
-            {/* ここに実際のチャートコンポーネントを追加 */}
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <PieChart className="h-6 w-6" />
-              <span>時間配分</span>
-            </CardTitle>
-            <span className="text-sm">作成日: 2024/12/31</span>
-          </CardHeader>
-          <CardContent>
-            <p>異なるアクティビティに費やされた時間の割合</p>
-            {/* ここに実際のチャートコンポーネントを追加 */}
-          </CardContent>
-        </Card>
+        {insights.map((insight) => {
+          return (
+            <Link
+              key={insight.id}
+              href={`/summary/${insight.id}`}
+              className="block hover:shadow-lg transition-shadow duration-300"
+            >
+              <Card className="h-full cursor-pointer">
+                <CardHeader>
+                  <CardTitle className="flex items-center space-x-2">
+                    <span>{insight.title}</span>
+                  </CardTitle>
+                  <span className="text-sm">作成日: {insight.date}</span>
+                </CardHeader>
+                <CardContent>
+                  <p>{insight.summary}</p>
+                  <Button variant="outline" className="mt-4 w-full">
+                    詳細を見る
+                  </Button>
+                </CardContent>
+              </Card>
+            </Link>
+          )
+        })}
       </div>
     </div>
   )
