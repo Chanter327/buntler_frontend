@@ -15,7 +15,7 @@ type ChatAreaProps = {
   chatId: string
 }
 
-export default function ChatArea({ chatId }: ChatAreaProps) {
+export default function ChatArea({}: ChatAreaProps) {
   const [messages, setMessages] = useState<Message[]>([
     { id: "1", sender: "AI", content: "こんにちは！何かお手伝いできることはありますか？", timestamp: "10:00 AM" },
     { id: "2", sender: "User", content: "はい、今日のスケジュールを教えてください。", timestamp: "10:01 AM" },
