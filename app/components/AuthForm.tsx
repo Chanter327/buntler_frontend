@@ -6,9 +6,9 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 interface AuthFormProps {
-  isSignIn: boolean
+  isSignIn: boolean;
+  onSubmit: (email: string, password: string) => void; // ここを追加
 }
-
 export default function AuthForm({ isSignIn }: AuthFormProps) {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
